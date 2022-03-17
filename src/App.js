@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import Navbar from './components/Navbar'
 import Characters from './components/Characters'
 import Pagination from './components/Pagination'
+import Cookies from 'universal-cookie';
 
 function App() {
   
@@ -29,7 +30,15 @@ function App() {
   }
 
   useEffect(() => {
-      fetchCharacters(initialURL);
+    const cookiestores = new Cookies();
+    console.log(`This is the stored cookie: ${cookiestores.get('reactfromblog')}`)
+    const cookies = new Cookies();
+    cookies.set('reactfromblog', 'this_works', {path: '/'});
+  }, [])
+  
+
+  useEffect(() => {
+    fetchCharacters(initialURL);
   }, [])
 
   return (
